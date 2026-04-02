@@ -597,8 +597,45 @@
       text-transform: uppercase; letter-spacing: 0.08em;
     }
 
+    /* ── CMS / STATES BLOCKS ── */
+    .cms-alert-box {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: linear-gradient(135deg, rgba(13,110,110,0.06), rgba(197,151,58,0.05));
+      border: 1.5px solid rgba(13,110,110,0.2);
+      border-radius: 16px; padding: 1.75rem 2rem; margin-top: 2.5rem;
+    }
+    .cms-alert-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--teal); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .cms-alert-icon svg { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; }
+    .cms-alert-box h3 {
+      font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .cms-alert-box p { font-size: 0.875rem; color: var(--ink-mid); line-height: 1.7; margin: 0; }
+
+    .alignment-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-top: 1.5rem;
+    }
+    .alignment-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+    }
+    .ac-num {
+      font-family: 'Lora', serif; font-size: 2rem; font-weight: 700;
+      color: var(--teal-pale); line-height: 1; margin-bottom: 0.6rem;
+      -webkit-text-stroke: 1.5px var(--teal);
+    }
+    .alignment-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
+    .alignment-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.65; }
+
     @media (max-width: 768px) {
       .urban-grid { grid-template-columns: 1fr; }
+      .alignment-grid { grid-template-columns: 1fr; }
+      .cms-alert-box { flex-direction: column; }
     }
   </style>
 </head>
@@ -746,7 +783,7 @@
         <div class="evidence-text">
           <h3>CHW-Mediated Diagnostics: The Case for Rural America</h3>
           <p>
-            Our Bangladesh pilot deployed ClinicalAssist through trained community health workers in Comilla District — a region with similar healthcare infrastructure constraints to rural U.S. counties.
+            Our Bangladesh pilot deployed ClinicalAssist through trained community health workers in Comilla District — a region with similar healthcare infrastructure constraints to rural U.S. counties. This study is a working paper and has not yet been submitted for peer review.
           </p>
           <p>
             Our technology holds <strong>two U.S. patents</strong> (US 9,536,051 B1 and US 11,972,865 B1) and multiple international PCT applications, ensuring that partner organizations build on a protected and defensible platform.
@@ -775,7 +812,7 @@
         </div>
         <div>
           <h3>Our Unifying Mission</h3>
-          <p>Be the first to merge cognitive clinical decision support with Remote Patient Monitoring (RPM) — in rural and urban settings alike.</p>
+          <p>Be the first of our kind to merge cognitive clinical decision support with Remote Patient Monitoring (RPM) — in rural and urban settings alike. This is our insight and what sets us apart.</p>
         </div>
       </div>
 
@@ -814,7 +851,7 @@
         <div class="urban-card">
           <div class="uc-tag">Proven Clinical Performance</div>
           <h3>Head-to-Head: Superior to Physicians and Competing AI</h3>
-          <p>A prior peer-reviewed study of the Doctor AI cognitive reasoning system — using 15 clinical cases in a head-to-head comparison — demonstrated <strong>100% diagnostic accuracy</strong>, a <strong>93% match with physician triage decisions</strong>, and performance <strong>3–5× faster and more efficient</strong> than Babylon Health's decision-tree AI. Separately, our Bangladesh field pilot across 239 patients and 277 encounters achieved an overall diagnostic accuracy of 94.7%, with 98.0% accuracy on chronic disease and 88.9% on acute care. No other triage system, domestic or international, has replicated these results.</p>
+          <p>A prior peer-reviewed study of the Doctor AI cognitive reasoning system — using 15 clinical cases in a head-to-head comparison — demonstrated <strong>100% diagnostic accuracy</strong>, a <strong>93% match with physician triage decisions</strong>, and performance <strong>3–5× faster and more efficient</strong> than Babylon Health's decision-tree AI approach. Separately, our Bangladesh field pilot across 239 patients and 277 encounters achieved an overall diagnostic accuracy of 94.7%, with 98.0% accuracy on chronic disease and 88.9% on acute care. No other triage system, domestic or international, has replicated these results.</p>
         </div>
       </div>
 
@@ -829,7 +866,7 @@
         </div>
         <div class="rpm-stat">
           <div class="big">3–5×</div>
-          <div class="label">Faster than competing decision-tree AI (Babylon Health)</div>
+          <div class="label">Faster than Babylon Health's decision-tree AI approach</div>
         </div>
         <div class="rpm-stat">
           <div class="big">20+</div>
@@ -862,7 +899,35 @@
     <div class="section-inner">
       <span class="section-tag">National Expansion</span>
       <h2 class="section-title">Join the effort — all 50 states</h2>
-      <p class="section-lead">We are actively building state-level partnerships across the country. Active conversations are underway in the states below.</p>
+      <p class="section-lead">CMS has allocated Rural Health Telemedicine funding to all 50 states — and every state now has an active RFP. ClinicalAssist is purpose-built to answer it.</p>
+
+      <div class="cms-alert-box">
+        <div class="cms-alert-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h3>Federal RHT Funding Is Live in Every State</h3>
+          <p>The Centers for Medicare &amp; Medicaid Services (CMS) has distributed Rural Health Telemedicine funds to all 50 states. Each state has issued — or is actively issuing — an RFP for qualified telemedicine providers to deploy RHT-compliant platforms and services. This represents a once-in-a-generation opportunity to bring federally backed telemedicine infrastructure to underserved communities at scale.</p>
+        </div>
+      </div>
+
+      <div class="alignment-grid">
+        <div class="alignment-card">
+          <div class="ac-num">01</div>
+          <h4>What States Are Looking For</h4>
+          <p>State RFPs are seeking platforms that can deliver physician-quality triage, remote patient monitoring, and continuous care to rural and underserved populations — without requiring on-site physician presence at every encounter.</p>
+        </div>
+        <div class="alignment-card">
+          <div class="ac-num">02</div>
+          <h4>How ClinicalAssist Qualifies</h4>
+          <p>ClinicalAssist is the only patented cognitive clinical platform that integrates triage, RPM, and remote-control telemedicine in a single system — deployed, validated in the field, and already covered under Medicare RPM reimbursement pathways. We are shovel-ready.</p>
+        </div>
+        <div class="alignment-card">
+          <div class="ac-num">03</div>
+          <h4>Our Mission Aligns Directly</h4>
+          <p>CMS's RHT mandate — extend care to patients who cannot reach it — is the exact problem ClinicalAssist was built to solve. Every active state conversation we are in is an opportunity to respond to an open RFP with a proven, federally reimbursable platform.</p>
+        </div>
+      </div>
 
       <div style="margin-top: 2.5rem;">
         <div class="states-divider">Active communications</div>
