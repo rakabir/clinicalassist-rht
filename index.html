@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicalAssist | Rural Health Telemedicine Partner Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #0d6e6e;
+      --teal-light: #12918f;
+      --teal-pale:  #e6f4f4;
+      --gold:       #c5973a;
+      --gold-light: #f0d9a8;
+      --cream:      #faf8f4;
+      --ink:        #1a1a1a;
+      --ink-mid:    #444;
+      --ink-soft:   #777;
+      --white:      #ffffff;
+      --border:     #e2ddd6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-brand-dot {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-brand-dot svg { width: 18px; height: 18px; fill: white; }
+    .nav-brand-name {
+      font-family: 'Lora', serif;
+      font-weight: 600; font-size: 1.05rem;
+      color: var(--teal);
+    }
+    .nav-brand-name span { color: var(--gold); }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--ink-mid);
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: white;
+      padding: 0.45rem 1.1rem; border-radius: 6px;
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 2rem 80px;
+      display: flex; align-items: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(13,110,110,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(197,151,58,0.06) 0%, transparent 60%),
+        var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 55%; height: 100%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 700'%3E%3Ccircle cx='500' cy='150' r='300' fill='none' stroke='%230d6e6e' stroke-width='0.5' opacity='0.15'/%3E%3Ccircle cx='500' cy='150' r='220' fill='none' stroke='%230d6e6e' stroke-width='0.5' opacity='0.12'/%3E%3Ccircle cx='500' cy='150' r='140' fill='none' stroke='%230d6e6e' stroke-width='0.5' opacity='0.1'/%3E%3Ccircle cx='200' cy='550' r='180' fill='none' stroke='%23c5973a' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E") no-repeat center;
+      background-size: cover;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-pale); border: 1px solid rgba(13,110,110,0.2);
+      border-radius: 100px; padding: 0.3rem 0.9rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--teal);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); display: inline-block;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--teal);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--ink-mid);
+      line-height: 1.75; margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--teal); color: white;
+      padding: 0.75rem 1.75rem; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--teal);
+      border: 1.5px solid var(--teal);
+      padding: 0.75rem 1.75rem; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { background: var(--teal-pale); transform: translateY(-1px); }
+    .hero-stats {
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .stat-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeUp 0.6s ease both;
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--teal-pale); display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .stat-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+    .stat-val {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--teal); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.82rem; color: var(--ink-soft); margin-top: 2px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 90px 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700; line-height: 1.25;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .section-lead {
+      font-size: 1.05rem; color: var(--ink-mid);
+      max-width: 600px; line-height: 1.75;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: white; }
+    .how-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .how-card {
+      padding: 2rem 1.5rem;
+      border: 1px solid var(--border); border-radius: 16px;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .how-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .how-num {
+      font-family: 'Lora', serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--teal-pale); line-height: 1;
+      margin-bottom: 0.75rem;
+      -webkit-text-stroke: 1.5px var(--teal);
+    }
+    .how-card h3 {
+      font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    .how-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; }
+    .how-links {
+      margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+    }
+    .platform-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-pale); border: 1px solid rgba(13,110,110,0.2);
+      color: var(--teal); border-radius: 8px;
+      padding: 0.6rem 1.2rem; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .platform-link:hover { background: rgba(13,110,110,0.15); }
+    .platform-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+    /* ── EVIDENCE ── */
+    #evidence { background: var(--cream); }
+    .evidence-layout {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem;
+      align-items: start; margin-top: 3.5rem;
+    }
+    .evidence-numbers {
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .ev-num {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--teal);
+    }
+    .ev-num .big {
+      font-family: 'Lora', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--teal);
+      line-height: 1;
+    }
+    .ev-num .label { font-size: 0.85rem; color: var(--ink-mid); margin-top: 4px; }
+    .evidence-text h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; color: var(--ink);
+    }
+    .evidence-text p {
+      font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 1rem;
+    }
+    .evidence-text p strong { color: var(--ink); }
+    .quote-block {
+      background: var(--teal); color: white;
+      border-radius: 14px; padding: 1.5rem 1.75rem;
+      margin-top: 1.5rem; position: relative;
+    }
+    .quote-block::before {
+      content: '"'; font-family: 'Lora', serif;
+      font-size: 5rem; line-height: 0.5;
+      color: rgba(255,255,255,0.2);
+      position: absolute; top: 1rem; left: 1rem;
+    }
+    .quote-block p {
+      font-style: italic; font-size: 0.95rem; line-height: 1.7;
+      color: rgba(255,255,255,0.95); margin: 0; padding-left: 0.5rem;
+    }
+    .quote-block cite {
+      display: block; margin-top: 0.75rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.65);
+      font-style: normal; padding-left: 0.5rem;
+    }
+
+    /* ── PARTNERSHIP MODEL ── */
+    #partnership { background: white; }
+    .model-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .model-card {
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .model-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .model-card.featured {
+      border-color: var(--teal); border-width: 2px;
+      background: linear-gradient(135deg, rgba(13,110,110,0.03), white);
+    }
+    .model-card.featured::after {
+      content: 'Recommended';
+      position: absolute; top: 1.25rem; right: -1.75rem;
+      background: var(--teal); color: white;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 0.2rem 2rem;
+      transform: rotate(35deg);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .model-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--teal-pale); display: flex;
+      align-items: center; justify-content: center; margin-bottom: 1rem;
+    }
+    .model-icon svg { width: 24px; height: 24px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+    .model-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .model-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; }
+    .model-list {
+      list-style: none; margin-top: 0.75rem;
+    }
+    .model-list li {
+      font-size: 0.85rem; color: var(--ink-mid);
+      padding: 0.2rem 0; display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .model-list li::before {
+      content: '✓'; color: var(--teal); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .rht-banner {
+      background: linear-gradient(135deg, var(--teal) 0%, #0a5252 100%);
+      border-radius: 20px; padding: 2.5rem 3rem;
+      margin-top: 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem;
+      color: white;
+    }
+    .rht-banner h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem;
+    }
+    .rht-banner p { font-size: 0.9rem; opacity: 0.85; max-width: 500px; }
+    .btn-gold {
+      background: var(--gold); color: white;
+      padding: 0.8rem 2rem; border-radius: 8px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: #b8892e; transform: translateY(-1px); }
+
+    /* ── TEAM ── */
+    #team { background: var(--cream); }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .team-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .team-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--teal-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Lora', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--teal);
+      border: 3px solid rgba(13,110,110,0.15);
+    }
+    .team-card h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+    .team-card .role {
+      font-size: 0.78rem; color: var(--teal); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem;
+    }
+    .team-card p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(160deg, #0a2e2e 0%, var(--teal) 100%);
+      color: white;
+    }
+    #contact .section-title { color: white; }
+    #contact .section-lead { color: rgba(255,255,255,0.75); }
+    #contact .section-tag { color: var(--gold-light); }
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+      align-items: start; margin-top: 3.5rem;
+    }
+    .contact-info h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;
+      color: white;
+    }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .contact-item svg {
+      width: 20px; height: 20px; stroke: var(--gold-light); fill: none;
+      stroke-width: 1.8; flex-shrink: 0; margin-top: 2px;
+    }
+    .contact-item div { font-size: 0.9rem; line-height: 1.5; }
+    .contact-item .ci-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-item a { color: rgba(255,255,255,0.85); text-decoration: none; }
+    .contact-item a:hover { color: var(--gold-light); }
+    .contact-form {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 2.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 500;
+      color: rgba(255,255,255,0.65); margin-bottom: 0.4rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; padding: 0.7rem 1rem;
+      color: white; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold-light);
+      background: rgba(255,255,255,0.12);
+    }
+    .form-group select option { background: #0a2e2e; color: white; }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-submit {
+      width: 100%; background: var(--gold); color: white; border: none;
+      padding: 0.85rem; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: #b8892e; transform: translateY(-1px); }
+    .form-note {
+      text-align: center; margin-top: 0.75rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #061a1a; color: rgba(255,255,255,0.5);
+      padding: 2rem; text-align: center;
+      font-size: 0.82rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--gold-light); }
+    footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .stat-card { flex: 1; min-width: 150px; }
+      .evidence-layout { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .rht-banner { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="#">
+      <div class="nav-brand-dot">
+        <svg viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v6h6a1 1 0 010 2h-6v6a1 1 0 01-2 0v-6H3a1 1 0 010-2h6V3a1 1 0 011-1z"/></svg>
+      </div>
+      <span class="nav-brand-name">ClinicalAssist <span>RHT</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">Platform</a></li>
+      <li><a href="#evidence">Evidence</a></li>
+      <li><a href="#partnership">Partnership</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Partner With Us</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content" style="animation: fadeUp 0.7s ease both;">
+        <div class="hero-eyebrow">Rural Health Telemedicine Partner Network</div>
+        <h1>Bringing <em>AI-powered</em> care to the patients who need it most</h1>
+        <p class="hero-sub">
+          ClinicalAssist partners with healthcare providers to deploy physician-level AI diagnostics in rural and underserved communities — expanding access, reducing costs, and improving outcomes at scale.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Apply to Partner</a>
+          <a href="#how" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="stat-val">239+</div>
+            <div class="stat-label">Patients enrolled in Bangladesh pilot</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          </div>
+          <div>
+            <div class="stat-val">400+</div>
+            <div class="stat-label">Diagnoses covered by Doctor AI</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="stat-val">24 / 7</div>
+            <div class="stat-label">AI-powered monitoring & triage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-inner">
+      <span class="section-tag">The Platform</span>
+      <h2 class="section-title">How ClinicalAssist Works</h2>
+      <p class="section-lead">Our patented cognitive AI replicates physician-level clinical reasoning — deployed through community health workers, telemedicine kiosks, or provider workflows.</p>
+
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <h3>Patient Triage via Doctor AI</h3>
+          <p>Patients interact with Genie, our AI assistant, entering symptoms through guided prompts. The system screens for 400+ conditions including COVID-19, influenza, cardiac events, and chronic disease.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <h3>Remote Control Telemedicine</h3>
+          <p>Providers connect to patients through our remote-control telemedicine interface — enabling real-time examination support, vital sign integration, and AI-generated encounter notes via our AI Scribe.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <h3>Clinical Decision Support</h3>
+          <p>The ClinicalAssist cognitive engine surfaces differential diagnoses, flags critical alerts (Code Blue, Rapid Response, Fall Alerts), and generates structured treatment recommendations for provider review.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">04</div>
+          <h3>Continuous Remote Monitoring</h3>
+          <p>Between visits, patients are monitored via RemoteMonitor.ai — reducing unnecessary ED utilization, hospital readmissions, and care gaps for high-risk rural populations.</p>
+        </div>
+      </div>
+
+      <div class="how-links">
+        <span style="font-size:0.875rem; color: var(--ink-soft); font-weight:500;">Explore our platforms:</span>
+        <a href="https://www.clinicalassist.net/" target="_blank" class="platform-link">
+          ClinicalAssist.net
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="https://ddxrx.com/" target="_blank" class="platform-link">
+          DDxRx / Doctor AI
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="https://freepatientcare.ai/" target="_blank" class="platform-link">
+          Free Patient Care / Triage
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- EVIDENCE -->
+  <section id="evidence">
+    <div class="section-inner">
+      <span class="section-tag">Pilot Evidence</span>
+      <h2 class="section-title">Real-world results from the field</h2>
+      <p class="section-lead">Our Bangladesh community health worker pilot — the first to generate policy-grade economic evidence for AI-assisted diagnostics in a low-resource setting — demonstrates what ClinicalAssist can do at scale.</p>
+
+      <div class="evidence-layout">
+        <div class="evidence-numbers">
+          <div class="ev-num">
+            <div class="big">239</div>
+            <div class="label">Patients enrolled, Comilla District, Bangladesh</div>
+          </div>
+          <div class="ev-num">
+            <div class="big">277+</div>
+            <div class="label">Clinical encounters documented</div>
+          </div>
+          <div class="ev-num">
+            <div class="big">400+</div>
+            <div class="label">Diagnoses supported by the AI engine</div>
+          </div>
+          <div class="ev-num">
+            <div class="big">99%</div>
+            <div class="label">Stated system accuracy rate</div>
+          </div>
+          <div class="ev-num">
+            <div class="big">2</div>
+            <div class="label">U.S. Patents protecting the core technology</div>
+          </div>
+        </div>
+        <div class="evidence-text">
+          <h3>CHW-Mediated AI Diagnostics: The Case for Rural America</h3>
+          <p>
+            Our Bangladesh pilot deployed ClinicalAssist through trained community health workers in Comilla District — a region with similar healthcare infrastructure constraints to rural U.S. counties. The results, currently in peer review at <strong>BMJ Open</strong>, demonstrate that AI-augmented CHW encounters can substantially improve diagnostic accuracy and care continuity without requiring on-site physician presence.
+          </p>
+          <p>
+            These findings translate directly to the Rural Health Telemedicine context. Across the U.S., <strong>over 60 million people</strong> live in rural areas where physician shortages, long travel distances, and hospital closures create care deserts. ClinicalAssist's model — triage, remote examination, AI scribe, and continuous monitoring — is designed for exactly these settings.
+          </p>
+          <p>
+            Our technology holds <strong>two U.S. patents</strong> (US 9,536,051 B1 and US 11,972,865 B1) and multiple international PCT applications, ensuring that partner organizations build on a protected and defensible platform.
+          </p>
+          <div class="quote-block">
+            <p>The RobotDoctor module can serve as virtual primary care — treating most common medical problems where face-to-face visits may not be necessary, while tracking symptom progression over multiple encounters.</p>
+            <cite>— ClinicalAssist Clinical Framework</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- PARTNERSHIP -->
+  <section id="partnership">
+    <div class="section-inner">
+      <span class="section-tag">State Expansion</span>
+      <h2 class="section-title">Partnership & expansion model</h2>
+      <p class="section-lead">We're seeking healthcare providers, FQHCs, rural hospitals, and state health systems ready to bring AI-augmented telemedicine to their communities.</p>
+
+      <div class="model-grid">
+        <div class="model-card">
+          <div class="model-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Primary Care Clinics</h3>
+          <p>Integrate ClinicalAssist into existing workflows. Reduce documentation burden with AI Scribe, triage walk-ins faster, and extend capacity without additional FTEs.</p>
+          <ul class="model-list">
+            <li>AI Scribe integration</li>
+            <li>Doctor AI triage kiosk</li>
+            <li>Remote monitoring for chronic patients</li>
+          </ul>
+        </div>
+        <div class="model-card featured">
+          <div class="model-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Rural Health Telemedicine (RHT) Hub</h3>
+          <p>Serve as a regional hub for AI-augmented telemedicine, deploying ClinicalAssist across spoke sites in your state's rural counties. Qualify for federal RHT designations and reimbursement pathways.</p>
+          <ul class="model-list">
+            <li>Full platform deployment across sites</li>
+            <li>Community health worker training</li>
+            <li>Federal RHT billing support</li>
+            <li>Outcomes data & research partnership</li>
+            <li>Co-branding & state expansion rights</li>
+          </ul>
+        </div>
+        <div class="model-card">
+          <div class="model-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Hospital & Health System</h3>
+          <p>Extend your hospital's reach into the community through remote monitoring, fall alert and code blue AI, and intelligent patient handoffs that reduce ED overcrowding and readmissions.</p>
+          <ul class="model-list">
+            <li>Inpatient fall & code alert AI</li>
+            <li>ED diversion via triage</li>
+            <li>Post-discharge remote monitoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rht-banner">
+        <div>
+          <h3>Ready to bring this to your state?</h3>
+          <p>We're actively onboarding partners for state-level Rural Health Telemedicine expansion. Our team will work with you on site assessment, training, and go-live support.</p>
+        </div>
+        <a href="#contact" class="btn-gold">Start the Conversation →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="section-inner">
+      <span class="section-tag">Our Team</span>
+      <h2 class="section-title">The people behind the platform</h2>
+      <p class="section-lead">A multidisciplinary team of clinicians, engineers, economists, and global health researchers committed to making equitable care a reality.</p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">MW</div>
+          <h3>Michael Williams, MD</h3>
+          <div class="role">Chief Medical Officer</div>
+          <p>Practicing physician and clinical AI architect. Lead developer of the ClinicalAssist cognitive engine and Doctor AI diagnostic framework.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">TN</div>
+          <h3>Tariq Nakhooda, MD</h3>
+          <div class="role">Clinical Lead</div>
+          <p>Internal medicine physician focused on clinical validation, care protocol development, and physician-facing AI integration across ClinicalAssist modules.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">RC</div>
+          <h3>Raeed Chowdhury</h3>
+          <div class="role">Research Lead & Co-Investigator</div>
+          <p>PhD Candidate in Health Economics at the University of Alabama. Leads causal inference research, pilot design, and evidence generation for the Bangladesh RCT program.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">MP</div>
+          <h3>Michael Price, PhD</h3>
+          <div class="role">Faculty Advisor</div>
+          <p>Professor of Economics, University of Alabama. Research expertise in environmental health, behavioral economics, and field experiment design.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 2.5rem; padding: 1.5rem 2rem; background: white; border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <div style="font-size: 0.75rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.3rem;">Intellectual Property</div>
+          <div style="font-size: 0.9rem; color: var(--ink-mid);">US Patent <strong>9,536,051 B1</strong> &nbsp;·&nbsp; US Patent <strong>11,972,865 B1</strong> &nbsp;·&nbsp; PCT/US22/53905 &nbsp;·&nbsp; PCT/US25/27660</div>
+        </div>
+        <a href="https://www.clinicalassist.net/" target="_blank" class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">View Executive Overview →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Apply to become an RHT partner</h2>
+      <p class="section-lead">Tell us about your organization and service area. Our team will follow up within 48 hours to schedule a demonstration and needs assessment.</p>
+
+      <div class="contact-layout">
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <div class="ci-label">Email</div>
+              <a href="mailto:contact@ddxrx.com">contact@ddxrx.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1.1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.9 16.92z"/></svg>
+            <div>
+              <div class="ci-label">Phone</div>
+              <a href="tel:2288067777">(228) 806-7777</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="ci-label">Headquarters</div>
+              <div style="color: rgba(255,255,255,0.8);">1120 Beach Blvd<br/>Biloxi, MS 39530</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;">
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem;">Our Platforms</div>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <a href="https://www.clinicalassist.net/" target="_blank" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f0d9a8'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">↗ clinicalassist.net</a>
+              <a href="https://ddxrx.com/" target="_blank" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f0d9a8'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">↗ ddxrx.com — Doctor AI</a>
+              <a href="https://freepatientcare.ai/" target="_blank" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f0d9a8'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">↗ freepatientcare.ai — Triage</a>
+              <a href="https://remotemonitor.ai/" target="_blank" style="color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f0d9a8'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">↗ remotemonitor.ai</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form action="https://formspree.io/f/your-form-id" method="POST" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="first_name" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="jane@healthsystem.org" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Organization</label>
+                <input type="text" name="organization" placeholder="Regional Health System" required />
+              </div>
+              <div class="form-group">
+                <label>State</label>
+                <select name="state" required>
+                  <option value="" disabled selected>Select state</option>
+                  <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                  <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                  <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+                  <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+                  <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+                  <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+                  <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+                  <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+                  <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+                  <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+                  <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+                  <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+                  <option>Wisconsin</option><option>Wyoming</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Organization Type</label>
+              <select name="org_type" required>
+                <option value="" disabled selected>Select type</option>
+                <option>Rural Health Clinic (RHC)</option>
+                <option>Federally Qualified Health Center (FQHC)</option>
+                <option>Critical Access Hospital</option>
+                <option>Regional Hospital / Health System</option>
+                <option>Primary Care Practice</option>
+                <option>State / County Health Department</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tell us about your patient population and interest</label>
+              <textarea name="message" placeholder="Brief description of your service area, patient volume, and what you're hoping to accomplish with ClinicalAssist..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Submit Partnership Application</button>
+            <p class="form-note">We'll respond within 48 hours. No commitment required.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://www.clinicalassist.net/" target="_blank">ClinicalAssist.net</a>
+      <a href="https://ddxrx.com/" target="_blank">DDxRx / Doctor AI</a>
+      <a href="https://www.clinicalassist.net/privacy-policy.html" target="_blank">Privacy Policy</a>
+      <a href="https://www.clinicalassist.net/medical-disclaimer.html" target="_blank">Medical Disclaimer</a>
+      <a href="https://ddxrx.com/terms-conditions.php" target="_blank">Terms & Conditions</a>
+    </div>
+    <div>© 2026 ClinicalAssist / Doctor AI, LLC · US Patents 9,536,051 B1 &amp; 11,972,865 B1 · All Rights Reserved</div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Thank you — we\'ll be in touch shortly!';
+      btn.style.background = '#0d6e6e';
+      btn.disabled = true;
+      // To use Formspree: replace 'your-form-id' in the action URL with your Formspree form ID
+      // Or replace this handler with your own backend POST
+    }
+
+    // Subtle scroll animation for stat cards on evidence page
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.style.opacity = '1';
+          el.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.how-card, .model-card, .team-card, .ev-num').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
