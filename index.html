@@ -815,9 +815,88 @@
         </div>
       </div>
 
-      <div class="proposal-placeholder">
-        <p style="font-size:1rem; color: var(--ink-mid); font-weight:600;">Proposal content coming soon</p>
-        <p>This section will detail the rural health deployment model, target geographies, and funding pathways.</p>
+      <div style="margin-top: 2rem;">
+        <p style="font-size: 0.95rem; color: var(--ink-mid); line-height: 1.8; margin-bottom: 2rem; max-width: 780px;">
+          Our RHT proposals are <strong>implementation-first, research second</strong>. We have proof of concept from Bangladesh — now we bring it to the United States. Participating clinics will generate real-world outcomes data for retrospective analysis, but the primary mission is improving patient care <em>today</em>. We are actively pursuing RHT funding across multiple states, with annual calls giving us repeated opportunities to expand.
+        </p>
+
+        <!-- Proposal 1 -->
+        <div class="model-card featured" style="margin-bottom: 1.5rem;">
+          <div class="uc-tag" style="margin-bottom: 0.75rem;">Proposal 1 — Full Partnership</div>
+          <h3>Full Clinic Integration + Remote Patient Monitoring</h3>
+          <p style="margin-bottom: 1.5rem;">A two-layer model that improves efficiency inside the clinic and extends care beyond it — funded through RHT grants and self-sustaining through Medicare RPM billing codes.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="display:flex; gap: 1rem; align-items: flex-start;">
+              <div class="how-num" style="font-size: 1.8rem; margin-bottom: 0; flex-shrink: 0; min-width: 2rem;">01</div>
+              <div>
+                <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.2rem;">Partner with clinics in the target state</div>
+                <div style="font-size: 0.82rem; color: var(--ink-soft); line-height: 1.65;">Identify primary care clinics ready to participate. ClinicalAssist is compatible with any electronic health record system — no EHR migration required.</div>
+              </div>
+            </div>
+            <div style="display:flex; gap: 1rem; align-items: flex-start;">
+              <div class="how-num" style="font-size: 1.8rem; margin-bottom: 0; flex-shrink: 0; min-width: 2rem;">02</div>
+              <div>
+                <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.2rem;">Apply for RHT funding</div>
+                <div style="font-size: 0.82rem; color: var(--ink-soft); line-height: 1.65;">Use the RHT grant to fund physician oversight time, hire medical assistants, purchase cellular-connected blood pressure monitors for patients, and cover all implementation logistics.</div>
+              </div>
+            </div>
+            <div style="display:flex; gap: 1rem; align-items: flex-start;">
+              <div class="how-num" style="font-size: 1.8rem; margin-bottom: 0; flex-shrink: 0; min-width: 2rem;">03</div>
+              <div>
+                <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.2rem;">Implement the two-layer model in clinic</div>
+                <div style="font-size: 0.82rem; color: var(--ink-soft); line-height: 1.65;">Deploy in-clinic AI triage and out-of-clinic remote patient monitoring simultaneously — see below.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="background: var(--teal-pale); border: 1px solid rgba(13,110,110,0.15); border-radius: 10px; padding: 1rem 1.1rem;">
+              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--teal); margin-bottom: 0.6rem;">Layer 1 — In-Clinic</div>
+              <ul class="model-list">
+                <li>Medical assistants (or PAs) triage waiting room patients using ClinicalAssist AI</li>
+                <li>AI auto-generates encounter notes — works with any EHR</li>
+                <li>Doctor reviews pre-populated notes and signs off</li>
+                <li>Patients move through the clinic faster; wait times drop</li>
+              </ul>
+            </div>
+            <div style="background: rgba(197,151,58,0.07); border: 1px solid rgba(197,151,58,0.2); border-radius: 10px; padding: 1rem 1.1rem;">
+              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gold); margin-bottom: 0.6rem;">Layer 2 — Out-of-Clinic (RPM)</div>
+              <ul class="model-list">
+                <li>Patients enrolled in Remote Patient Monitoring with grant-funded cellular BP monitors</li>
+                <li>Vitals update live in ClinicalAssist — no WiFi required</li>
+                <li>Mandatory monthly 20-min call by AI-augmented medical assistant</li>
+                <li>Catches complications between appointments — not weeks later</li>
+                <li>Generates recurring clinic revenue via Medicare RPM billing codes (99454, 99457, 99458)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal 2 -->
+        <div class="model-card" style="margin-bottom: 2.5rem;">
+          <div class="uc-tag" style="margin-bottom: 0.75rem; background: rgba(197,151,58,0.1); color: var(--gold);">Proposal 2 — Lighter Partnership</div>
+          <h3>AI-Augmented Monthly Care Calls</h3>
+          <p style="margin-bottom: 0.75rem;">A lower-lift option for clinics not yet ready for full in-clinic deployment. Medical assistants repurpose their existing 20-minute monthly RPM calls — now augmented by ClinicalAssist AI that gives them PA-like clinical capabilities.</p>
+          <ul class="model-list">
+            <li>No changes to existing clinic workflow required</li>
+            <li>MAs use the AI during their existing monthly calls to screen, assess, and escalate appropriately</li>
+            <li>AI gives non-physician staff the structured clinical reasoning of a physician's assistant</li>
+            <li>Improves RPM monitoring quality and catches deteriorating patients earlier</li>
+            <li>A natural on-ramp to the full Proposal 1 model over time</li>
+          </ul>
+        </div>
+
+        <!-- Strategy note -->
+        <div class="cms-alert-box">
+          <div class="cms-alert-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3>Our Expansion Strategy</h3>
+            <p>Every state issues RHT calls annually — giving us multiple shots at major state funding as our evidence base grows. Each clinic we implement is a data point building the case for wider adoption. A parallel <strong>SBIR grant</strong> will defray implementation costs for clinics across the country while we collect pilot data on the AI-augmented call model. As evidence accumulates from these early partners, we will scale RHT proposals to additional states year over year.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -931,15 +1010,8 @@
       <div style="margin-top: 2.5rem;">
         <div class="states-divider">Active communications</div>
         <div class="active-states-grid">
-          <span class="state-badge active">Washington</span>
-          <span class="state-badge active">Virginia</span>
-          <span class="state-badge active">Florida</span>
-          <span class="state-badge active">Tennessee</span>
-          <span class="state-badge active">Texas</span>
-          <span class="state-badge active">New York</span>
-          <span class="state-badge active">North Carolina</span>
-          <span class="state-badge active">Ohio</span>
           <span class="state-badge active">Alabama</span>
+          <span class="state-badge active">North Carolina</span>
         </div>
 
         <div class="states-divider">All states — open for partnership</div>
@@ -951,6 +1023,7 @@
           <span class="state-badge">Colorado</span>
           <span class="state-badge">Connecticut</span>
           <span class="state-badge">Delaware</span>
+          <span class="state-badge">Florida</span>
           <span class="state-badge">Georgia</span>
           <span class="state-badge">Hawaii</span>
           <span class="state-badge">Idaho</span>
@@ -973,15 +1046,21 @@
           <span class="state-badge">New Hampshire</span>
           <span class="state-badge">New Jersey</span>
           <span class="state-badge">New Mexico</span>
+          <span class="state-badge">New York</span>
           <span class="state-badge">North Dakota</span>
+          <span class="state-badge">Ohio</span>
           <span class="state-badge">Oklahoma</span>
           <span class="state-badge">Oregon</span>
           <span class="state-badge">Pennsylvania</span>
           <span class="state-badge">Rhode Island</span>
           <span class="state-badge">South Carolina</span>
           <span class="state-badge">South Dakota</span>
+          <span class="state-badge">Tennessee</span>
+          <span class="state-badge">Texas</span>
           <span class="state-badge">Utah</span>
           <span class="state-badge">Vermont</span>
+          <span class="state-badge">Virginia</span>
+          <span class="state-badge">Washington</span>
           <span class="state-badge">West Virginia</span>
           <span class="state-badge">Wisconsin</span>
           <span class="state-badge">Wyoming</span>
